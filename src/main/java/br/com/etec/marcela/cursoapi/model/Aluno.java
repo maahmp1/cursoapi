@@ -1,6 +1,6 @@
 package br.com.etec.marcela.cursoapi.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.Objects;
 
@@ -8,11 +8,19 @@ import java.util.Objects;
 @Table(name="aluno")
 
 public class Aluno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long Id;
     private String nomealuno;
-    private Integer curso;
-    private Integer cidade;
 
+    @ManyToOne
+    @JoinColumn(name="idcurso")
+    private Curso curso;
+
+    @ManyToOne
+    @JoinColumn(name="idcidade")
+    private Cidade cidade;
 
     public Long getId() {
         return Id;
@@ -30,19 +38,18 @@ public class Aluno {
         this.nomealuno = nomealuno;
     }
 
-    public Integer getCurso() {
+    public Curso getCurso() {
         return curso;
     }
 
-    public void setCurso(Integer curso) {
+    public void setCurso(Curso curso) {
         this.curso = curso;
     }
 
-    public Integer getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
-
-    public void setCidade(Integer cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
 

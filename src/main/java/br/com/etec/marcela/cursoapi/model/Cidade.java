@@ -1,23 +1,37 @@
 package br.com.etec.marcela.cursoapi.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name="cidade")
 public class Cidade {
 
-    private Integer Id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private int Id;
     private String nomecidade;
     private String uf;
 
+    @OneToMany(mappedBy = "cidade")
+    private List<Aluno> alunoscidade = new ArrayList<>();
 
-    public Integer getId() {
+    public List<Aluno> getAlunoscidade() {
+        return alunoscidade;
+    }
+
+    public void setAlunoscidade(List<Aluno> alunos) {
+        this.alunoscidade = alunoscidade;
+    }
+    public int getId() {
         return Id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         Id = id;
     }
 
@@ -44,7 +58,7 @@ public class Cidade {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cidade cidade = (Cidade) o;
-        return Id.equals(cidade.Id);
+        return Id == cidade.Id;
     }
 
     @Override
