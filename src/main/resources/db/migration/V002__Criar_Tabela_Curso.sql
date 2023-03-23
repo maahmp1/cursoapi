@@ -1,6 +1,6 @@
 Create Table Curso (
-id int not null auto_increment primary key,
-nomecurso varchar (25)
+id int not null primary key auto_increment,
+nomecurso varchar (100)
 );
 
 insert into curso(nomecurso) values ('ADS');
