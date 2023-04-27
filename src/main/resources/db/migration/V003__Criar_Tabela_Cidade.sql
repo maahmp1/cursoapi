@@ -4,6 +4,6 @@ nomecidade varchar (30),
 uf varchar(2)
 );
 
-Alter Table Curso add CONSTRAINT FK_Aluno_Curso foreign key(id_curso) references Curso(id);
+    Alter Table Curso add CONSTRAINT FK_Aluno_Curso foreign key(id_aluno) references Aluno(id);
 Alter Table Curso add CONSTRAINT FK_Aluno_Cidade foreign key(id_cidade) references Cidade(id);
 
