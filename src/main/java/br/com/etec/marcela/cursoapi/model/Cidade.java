@@ -1,5 +1,7 @@
 package br.com.etec.marcela.cursoapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class Cidade {
     private String nomecidade;
     private String uf;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cidade")
     private List<Aluno> alunoscidade = new ArrayList<>();
 
