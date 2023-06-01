@@ -15,26 +15,15 @@ public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int Id;
+    private Integer Id;
     private String nomecidade;
     private String uf;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cidade")
-    private List<Aluno> alunoscidade = new ArrayList<>();
-
-    public List<Aluno> getAlunoscidade() {
-        return alunoscidade;
-    }
-
-    public void setAlunoscidade(List<Aluno> alunos) {
-        this.alunoscidade = alunoscidade;
-    }
-    public int getId() {
+    public Integer getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         Id = id;
     }
 
@@ -46,6 +35,19 @@ public class Cidade {
         this.nomecidade = nomecidade;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cidade cidade = (Cidade) o;
+        return Id.equals(cidade.Id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Id);
+    }
+
     public String getUf() {
         return uf;
     }
@@ -54,18 +56,18 @@ public class Cidade {
         this.uf = uf;
     }
 
-
-    
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cidade cidade = (Cidade) o;
-        return Id == cidade.Id;
+    public List<Aluno> getAlunoscidade() {
+        return alunoscidade;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(Id);
+    public void setAlunoscidade(List<Aluno> alunoscidade) {
+        this.alunoscidade = alunoscidade;
     }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cidade")
+    private List<Aluno> alunoscidade = new ArrayList<>();
+
+
+
 }
